@@ -1,0 +1,13 @@
+{
+    "name": "Foundation.Feedbacks",
+    "rootNamespace": "Foundation.Feedbacks",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds",
+        "Foundation.Audio",
+        "UniTask"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

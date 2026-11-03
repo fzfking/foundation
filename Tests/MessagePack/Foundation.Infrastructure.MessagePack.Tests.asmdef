@@ -1,0 +1,24 @@
+{
+    "name": "Foundation.Infrastructure.MessagePack.Tests",
+    "rootNamespace": "Foundation.Tests",
+    "references": [
+        "Foundation",
+        "Foundation.Tutorial",
+        "Foundation.Tutorial.Flow",
+        "Foundation.Tests.DataSamples",
+        "Foundation.Infrastructure.MessagePack"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_MESSAGEPACK"
+    ],
+    "versionDefines": []
+}

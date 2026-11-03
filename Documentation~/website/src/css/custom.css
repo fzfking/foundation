@@ -1,0 +1,19 @@
+:root {
+  --ifm-color-primary: #2e5bd8;
+  --ifm-color-primary-dark: #2a52c2;
+  --ifm-color-primary-darker: #274db7;
+  --ifm-color-primary-darkest: #1f44a0;
+  --ifm-code-font-size: 92%;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #7da2ff;
+  --ifm-color-primary-dark: #5f8bff;
+  --ifm-color-primary-darker: #5081ff;
+  --ifm-color-primary-darkest: #1f5bff;
+}
+
+.theme-code-block {
+  box-shadow: none;
+  border: 1px solid var(--ifm-toc-border-color);
+}

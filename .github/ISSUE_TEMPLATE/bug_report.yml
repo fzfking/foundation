@@ -1,0 +1,68 @@
+name: Bug report
+description: Something in Foundation does not behave as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please check the [documentation](https://fzfking.github.io/foundation/) and existing
+        issues first. Remove secrets and personal data from logs and samples.
+  - type: input
+    id: foundation-version
+    attributes:
+      label: Foundation version
+      description: The tag or commit from your `manifest.json`.
+      placeholder: 0.8.0
+    validations:
+      required: true
+  - type: input
+    id: unity-version
+    attributes:
+      label: Unity version
+      placeholder: 6000.5.11f1
+    validations:
+      required: true
+  - type: input
+    id: adapters
+    attributes:
+      label: Adapters and third-party libraries involved
+      description: For example VContainer 1.19.0, Addressables 4.0.1, YooAsset 3.0.5. Write "none" if only the core is used.
+    validations:
+      required: true
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Where it happens
+      multiple: true
+      options:
+        - Editor
+        - Android
+        - iOS
+        - Other player platform
+        - Tests
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: A small project or a few lines of code that reproduce the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      render: text

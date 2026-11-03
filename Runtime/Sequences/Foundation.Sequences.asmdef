@@ -1,0 +1,8 @@
+{
+    "name": "Foundation.Sequences",
+    "rootNamespace": "Foundation.Sequences",
+    "references": [
+        "UniTask"
+    ],
+    "autoReferenced": true
+}

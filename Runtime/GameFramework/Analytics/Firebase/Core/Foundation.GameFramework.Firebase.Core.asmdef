@@ -1,0 +1,29 @@
+{
+    "name": "Foundation.GameFramework.Firebase.Core",
+    "rootNamespace": "Foundation.GameFramework.Firebase",
+    "references": [
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "Firebase.App.dll",
+        "Firebase.Platform.dll",
+        "Firebase.TaskExtension.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK",
+        "FOUNDATION_FIREBASE_CORE"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.google.firebase.app",
+            "expression": "",
+            "define": "FOUNDATION_FIREBASE_CORE"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,18 @@
+{
+    "name": "Foundation.Pooling",
+    "rootNamespace": "Foundation.Pooling",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

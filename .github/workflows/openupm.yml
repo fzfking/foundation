@@ -1,0 +1,21 @@
+name: OpenUPM
+
+on:
+  push:
+    tags:
+      - '**'
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger OpenUPM build and wait for publication
+        uses: openupm/openupm-action@89b79dc8dd6cb319efff06727f8fa0051ce7e517 # v1
+        with:
+          package: com.fzfking.foundation
+          tag: ${{ github.ref_name }}
+          timeout-minutes: 30

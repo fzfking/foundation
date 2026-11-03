@@ -1,0 +1,20 @@
+{
+    "name": "Foundation.Infrastructure.MessagePack",
+    "rootNamespace": "Foundation.Infrastructure.MessagePack",
+    "references": [
+        "Foundation",
+        "Foundation.Tutorial",
+        "Foundation.Tutorial.Flow"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_MESSAGEPACK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

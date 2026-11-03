@@ -1,0 +1,28 @@
+{
+    "name": "Foundation.GameFramework.Notifications.Mobile",
+    "rootNamespace": "Foundation.GameFramework.Notifications.Mobile",
+    "references": [
+        "Foundation",
+        "Foundation.GameFramework.Notifications",
+        "Unity.Notifications.Unified",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK",
+        "FOUNDATION_MOBILE_NOTIFICATIONS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.mobile.notifications",
+            "expression": "",
+            "define": "FOUNDATION_MOBILE_NOTIFICATIONS"
+        }
+    ],
+    "noEngineReferences": false
+}

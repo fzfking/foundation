@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.Audio",
+    "rootNamespace": "Foundation.Audio",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds",
+        "Foundation.Pooling",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

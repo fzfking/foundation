@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.UI.Imgui",
+    "rootNamespace": "Foundation.UI.Imgui",
+    "references": [
+        "Foundation",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_IMGUI"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

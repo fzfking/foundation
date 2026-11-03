@@ -1,0 +1,31 @@
+{
+  "name": "com.fzfking.foundation",
+  "version": "0.8.0",
+  "displayName": "Foundation",
+  "description": "Reusable, game-agnostic application foundation for Unity: composition and lifecycle (DI port, entry points, game contexts, loadable game modules), messaging (commands, queries, events), state machine, simulation, requirements and rewards, segmented save, config and content runtime (asset provider, localization, config groups), UI routing and components, audio, pooling, feedbacks, badges, scripted sequences and tutorials, strongly typed ids, and a client release/update controller. Third-party libraries (VContainer, LitMotion, MemoryPack, MessagePack, Addressables, YooAsset, ...) are optional adapters; UniTask is the async API.",
+  "unity": "6000.5",
+  "documentationUrl": "https://fzfking.github.io/foundation/",
+  "changelogUrl": "https://github.com/fzfking/foundation/blob/main/CHANGELOG.md",
+  "dependencies": {
+    "com.unity.ugui": "2.5.0"
+  },
+  "keywords": [
+    "foundation",
+    "framework",
+    "architecture",
+    "di",
+    "save",
+    "content",
+    "ui",
+    "audio",
+    "tutorial"
+  ],
+  "author": {
+    "name": "fzfking"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fzfking/foundation.git"
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "name": "Foundation.Tests",
+    "rootNamespace": "Foundation.Tests",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds",
+        "Foundation.Pooling",
+        "Foundation.Audio",
+        "Foundation.Audio.Editor",
+        "Foundation.TypedIds.Editor",
+        "Foundation.Tests.TypedIds.Fixtures",
+        "Foundation.Tutorial",
+        "Foundation.UI.UGui",
+        "UniTask",
+        "Foundation.Sequences",
+        "Foundation.Tutorial.Flow"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

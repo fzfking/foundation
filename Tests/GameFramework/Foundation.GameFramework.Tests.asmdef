@@ -1,0 +1,37 @@
+{
+    "name": "Foundation.GameFramework.Tests",
+    "rootNamespace": "Foundation.GameFramework.Tests",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds",
+        "Foundation.GameFramework.Ads",
+        "Foundation.GameFramework.CloudSave",
+        "Foundation.GameFramework.Connectivity",
+        "Foundation.GameFramework.Identity",
+        "Foundation.GameFramework.Notifications",
+        "Foundation.GameFramework.Sharing",
+        "UniTask"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_GAMEFRAMEWORK"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.google.play.games",
+            "expression": "",
+            "define": "FOUNDATION_GOOGLE_PLAY_GAMES"
+        }
+    ],
+    "noEngineReferences": false
+}

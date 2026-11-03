@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.GameFramework.Connectivity",
+    "rootNamespace": "Foundation.GameFramework.Connectivity",
+    "references": [
+        "Foundation",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

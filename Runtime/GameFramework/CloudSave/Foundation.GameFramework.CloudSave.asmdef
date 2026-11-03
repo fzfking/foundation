@@ -1,0 +1,30 @@
+{
+    "name": "Foundation.GameFramework.CloudSave",
+    "rootNamespace": "Foundation.GameFramework.CloudSave",
+    "references": [
+        "Foundation",
+        "UniTask",
+        "Google.Play.Games"
+    ],
+    "includePlatforms": [
+        "Android",
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK",
+        "FOUNDATION_GOOGLE_PLAY_GAMES"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.google.play.games",
+            "expression": "",
+            "define": "FOUNDATION_GOOGLE_PLAY_GAMES"
+        }
+    ],
+    "noEngineReferences": false
+}

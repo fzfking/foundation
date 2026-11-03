@@ -1,0 +1,42 @@
+{
+  "version.label": {
+    "message": "Текущая",
+    "description": "The label for version current"
+  },
+  "sidebar.docs.category.Getting started": {
+    "message": "Начало работы",
+    "description": "The label for category 'Getting started' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Концепции",
+    "description": "The label for category 'Concepts' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Core": {
+    "message": "Ядро",
+    "description": "The label for category 'Core' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Application": {
+    "message": "Приложение",
+    "description": "The label for category 'Application' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.UI": {
+    "message": "UI",
+    "description": "The label for category 'UI' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Systems": {
+    "message": "Системы",
+    "description": "The label for category 'Systems' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Adapters": {
+    "message": "Адаптеры",
+    "description": "The label for category 'Adapters' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.GameFramework": {
+    "message": "GameFramework",
+    "description": "The label for category 'GameFramework' in sidebar 'docs'"
+  },
+  "sidebar.docs.category.Editor": {
+    "message": "Редактор",
+    "description": "The label for category 'Editor' in sidebar 'docs'"
+  }
+}

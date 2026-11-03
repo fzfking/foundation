@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.GameFramework.SystemPermissions",
+    "rootNamespace": "Foundation.GameFramework.SystemPermissions",
+    "references": [
+        "Foundation",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

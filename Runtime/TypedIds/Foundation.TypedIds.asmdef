@@ -1,0 +1,14 @@
+{
+    "name": "Foundation.TypedIds",
+    "rootNamespace": "Foundation.TypedIds",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

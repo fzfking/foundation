@@ -1,0 +1,18 @@
+{
+    "name": "Foundation.GameFramework.Diagnostics",
+    "rootNamespace": "Foundation.GameFramework.Diagnostics",
+    "references": [
+        "Foundation"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

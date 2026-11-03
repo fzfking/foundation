@@ -1,0 +1,31 @@
+{
+    "name": "Foundation.Infrastructure.HybridClr.Tests",
+    "rootNamespace": "Foundation.Tests.HybridClr",
+    "references": [
+        "Foundation",
+        "Foundation.Infrastructure.HybridClr",
+        "UniTask"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_HYBRIDCLR"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.code-philosophy.hybridclr",
+            "expression": "",
+            "define": "FOUNDATION_HYBRIDCLR"
+        }
+    ],
+    "noEngineReferences": false
+}

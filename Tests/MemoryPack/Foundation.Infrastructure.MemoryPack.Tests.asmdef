@@ -1,0 +1,26 @@
+{
+    "name": "Foundation.Infrastructure.MemoryPack.Tests",
+    "rootNamespace": "Foundation.Tests",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds",
+        "Foundation.Tutorial",
+        "Foundation.Tutorial.Flow",
+        "Foundation.Tests.TypedIds.Fixtures",
+        "Foundation.Tests.DataSamples",
+        "Foundation.Infrastructure.MemoryPack"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_MEMORYPACK"
+    ],
+    "versionDefines": []
+}

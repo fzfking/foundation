@@ -1,0 +1,14 @@
+{
+    "name": "Foundation.Feedbacks.UI",
+    "rootNamespace": "Foundation.Feedbacks.UI",
+    "references": [
+        "Foundation.Feedbacks",
+        "Foundation.Audio",
+        "Foundation",
+        "Foundation.UI.UGui",
+        "UniTask"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

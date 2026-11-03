@@ -1,0 +1,26 @@
+{
+    "name": "Foundation.Infrastructure.HybridClr",
+    "rootNamespace": "Foundation.Infrastructure.HybridClr",
+    "references": [
+        "Foundation",
+        "HybridCLR.Runtime",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_HYBRIDCLR"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.code-philosophy.hybridclr",
+            "expression": "",
+            "define": "FOUNDATION_HYBRIDCLR"
+        }
+    ],
+    "noEngineReferences": false
+}

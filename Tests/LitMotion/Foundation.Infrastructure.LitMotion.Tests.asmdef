@@ -1,0 +1,32 @@
+{
+    "name": "Foundation.Infrastructure.LitMotion.Tests",
+    "rootNamespace": "Foundation.Infrastructure.LitMotion.Tests",
+    "references": [
+        "Foundation",
+        "Foundation.Infrastructure.LitMotion",
+        "UniTask",
+        "LitMotion"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_LITMOTION"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.annulusgames.lit-motion",
+            "expression": "",
+            "define": "FOUNDATION_LITMOTION"
+        }
+    ],
+    "noEngineReferences": false
+}

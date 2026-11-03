@@ -1,0 +1,24 @@
+{
+    "name": "Foundation.Tests.DataSamples",
+    "rootNamespace": "Foundation.Tests.Serialization",
+    "references": [
+        "Foundation",
+        "Foundation.Tutorial",
+        "Foundation.Tutorial.Flow"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

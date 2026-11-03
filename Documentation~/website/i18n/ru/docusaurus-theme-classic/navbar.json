@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Foundation",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "Foundation",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.Documentation": {
+    "message": "Документация",
+    "description": "Navbar item with label Documentation"
+  },
+  "item.label.Changelog": {
+    "message": "История изменений",
+    "description": "Navbar item with label Changelog"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

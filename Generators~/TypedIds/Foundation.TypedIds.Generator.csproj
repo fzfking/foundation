@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Roslyn incremental generator for [StableId] / [RuntimeId] partial structs.
+       Unity cannot build this project. The compiled DLL is committed to Analyzers/ at the package root,
+       where Unity applies it to every assembly. Rebuild this project with dotnet build -c Release,
+       then copy Foundation.TypedIds.Generator.dll to Analyzers/ while preserving its .meta file.
+       The SDK is pinned in global.json and the build is deterministic, so the CI workflow can rebuild the DLL and
+       fail when it differs from the committed one. -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <IsRoslynComponent>true</IsRoslynComponent>
+    <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+    <AssemblyName>Foundation.TypedIds.Generator</AssemblyName>
+    <RootNamespace>Foundation.TypedIds.Generator</RootNamespace>
+    <DebugType>none</DebugType>
+    <NoWarn>RS1032;RS2008</NoWarn>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Deterministic>true</Deterministic>
+    <!-- Without this the SDK appends the current git commit to the assembly version, so every commit would change the DLL. -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.3.1" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

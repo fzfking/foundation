@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.UI.UGui",
+    "rootNamespace": "Foundation.UI.UGui",
+    "references": [
+        "Foundation",
+        "Foundation.Pooling",
+        "UniTask",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

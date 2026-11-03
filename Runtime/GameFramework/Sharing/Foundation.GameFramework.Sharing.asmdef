@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.GameFramework.Sharing",
+    "rootNamespace": "Foundation.GameFramework.Sharing",
+    "references": [
+        "Foundation",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

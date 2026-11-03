@@ -1,0 +1,22 @@
+{
+    "name": "Foundation.Infrastructure.MemoryPack.Editor",
+    "rootNamespace": "Foundation.Infrastructure.MemoryPack.Editor",
+    "references": [
+        "Foundation",
+        "Foundation.Content.Editor",
+        "Foundation.Infrastructure.MemoryPack"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_MEMORYPACK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

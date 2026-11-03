@@ -1,0 +1,24 @@
+{
+    "name": "Foundation.Content.Editor.PackageTests",
+    "rootNamespace": "Foundation.Content.Editor.PackageTests",
+    "references": [
+        "Foundation.Content.Editor",
+        "Foundation.Content.Authoring",
+        "Foundation"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Foundation.Tutorial.Flow.Editor",
+    "rootNamespace": "Foundation.Tutorial.Flow.Editor",
+    "references": [
+        "Foundation",
+        "Foundation.Tutorial.Flow",
+        "Foundation.Content.Authoring",
+        "Foundation.Content.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

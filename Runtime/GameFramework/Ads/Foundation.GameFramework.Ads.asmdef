@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.GameFramework.Ads",
+    "rootNamespace": "Foundation.GameFramework.Ads",
+    "references": [
+        "Foundation",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

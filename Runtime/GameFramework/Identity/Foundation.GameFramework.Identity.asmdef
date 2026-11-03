@@ -1,0 +1,20 @@
+{
+    "name": "Foundation.GameFramework.Identity",
+    "rootNamespace": "Foundation.GameFramework.Identity",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

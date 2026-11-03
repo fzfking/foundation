@@ -1,0 +1,25 @@
+{
+    "name": "Foundation.Haptics.Mobile",
+    "rootNamespace": "Foundation.Haptics.Mobile",
+    "references": [
+        "Foundation",
+        "tsyk5.MobileHapticFeedback"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_MOBILE_HAPTICS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.tsyk5.mobilehapticfeedback",
+            "expression": "",
+            "define": "FOUNDATION_MOBILE_HAPTICS"
+        }
+    ],
+    "noEngineReferences": false
+}

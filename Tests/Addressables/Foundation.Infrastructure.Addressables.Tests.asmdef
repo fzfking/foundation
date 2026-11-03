@@ -1,0 +1,33 @@
+{
+    "name": "Foundation.Infrastructure.Addressables.Tests",
+    "rootNamespace": "Foundation.Infrastructure.Addressables.Tests",
+    "references": [
+        "Foundation",
+        "Foundation.Infrastructure.Addressables",
+        "Unity.Addressables",
+        "Unity.ResourceManager",
+        "UniTask"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_ADDRESSABLES"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.addressables",
+            "expression": "",
+            "define": "FOUNDATION_ADDRESSABLES"
+        }
+    ],
+    "noEngineReferences": false
+}

@@ -1,0 +1,32 @@
+{
+    "name": "Foundation.Infrastructure.YooAsset.PlayModeTests",
+    "rootNamespace": "Foundation.Infrastructure.YooAsset.PlayModeTests",
+    "references": [
+        "Foundation",
+        "Foundation.Infrastructure.YooAsset",
+        "YooAsset",
+        "UniTask",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_YOOASSET"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.tuyoogame.yooasset",
+            "expression": "",
+            "define": "FOUNDATION_YOOASSET"
+        }
+    ],
+    "noEngineReferences": false
+}

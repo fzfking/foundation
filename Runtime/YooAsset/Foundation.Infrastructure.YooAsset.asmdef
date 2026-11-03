@@ -1,0 +1,26 @@
+{
+    "name": "Foundation.Infrastructure.YooAsset",
+    "rootNamespace": "Foundation.Infrastructure.YooAsset",
+    "references": [
+        "Foundation",
+        "YooAsset",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_YOOASSET"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.tuyoogame.yooasset",
+            "expression": "",
+            "define": "FOUNDATION_YOOASSET"
+        }
+    ],
+    "noEngineReferences": false
+}

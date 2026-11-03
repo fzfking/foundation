@@ -1,0 +1,17 @@
+{
+    "name": "Foundation.Infrastructure.ContentMirroring",
+    "rootNamespace": "Foundation.Infrastructure.ContentMirroring",
+    "references": [
+        "Foundation",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

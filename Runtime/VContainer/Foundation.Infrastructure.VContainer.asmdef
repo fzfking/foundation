@@ -1,0 +1,26 @@
+{
+    "name": "Foundation.Infrastructure.VContainer",
+    "rootNamespace": "Foundation.Infrastructure.VContainer",
+    "references": [
+        "Foundation",
+        "UniTask",
+        "VContainer"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_VCONTAINER"
+    ],
+    "versionDefines": [
+        {
+            "name": "jp.hadashikick.vcontainer",
+            "expression": "",
+            "define": "FOUNDATION_VCONTAINER"
+        }
+    ],
+    "noEngineReferences": false
+}

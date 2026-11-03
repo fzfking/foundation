@@ -1,0 +1,26 @@
+{
+    "name": "Foundation.UI.InputSystem",
+    "rootNamespace": "Foundation.UI",
+    "references": [
+        "Foundation",
+        "UniTask",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_INPUTSYSTEM"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.unity.inputsystem",
+            "expression": "",
+            "define": "FOUNDATION_INPUTSYSTEM"
+        }
+    ],
+    "noEngineReferences": false
+}

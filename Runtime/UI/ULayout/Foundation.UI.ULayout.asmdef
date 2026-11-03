@@ -1,0 +1,20 @@
+{
+    "name": "Foundation.UI.ULayout",
+    "rootNamespace": "Foundation.UI.ULayout",
+    "references": [
+        "Foundation.UI.UGui",
+        "uLayout",
+        "UnityEngine.UI"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_ULAYOUT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.pokeblokdude.ulayout",
+            "expression": "1.7.1",
+            "define": "FOUNDATION_ULAYOUT"
+        }
+    ]
+}

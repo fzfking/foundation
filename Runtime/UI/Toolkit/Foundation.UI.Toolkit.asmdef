@@ -1,0 +1,19 @@
+{
+    "name": "Foundation.UI.Toolkit",
+    "rootNamespace": "Foundation.UI.Toolkit",
+    "references": [
+        "Foundation",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_UITOOLKIT"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

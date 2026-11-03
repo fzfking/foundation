@@ -1,0 +1,32 @@
+{
+    "name": "Foundation.Infrastructure.VContainer.Tests",
+    "rootNamespace": "Foundation.Infrastructure.VContainer.Tests",
+    "references": [
+        "Foundation",
+        "Foundation.Infrastructure.VContainer",
+        "UniTask",
+        "VContainer"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS",
+        "FOUNDATION_VCONTAINER"
+    ],
+    "versionDefines": [
+        {
+            "name": "jp.hadashikick.vcontainer",
+            "expression": "",
+            "define": "FOUNDATION_VCONTAINER"
+        }
+    ],
+    "noEngineReferences": false
+}

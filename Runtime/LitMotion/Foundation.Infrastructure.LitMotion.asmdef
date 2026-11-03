@@ -1,0 +1,26 @@
+{
+    "name": "Foundation.Infrastructure.LitMotion",
+    "rootNamespace": "Foundation.Infrastructure.LitMotion",
+    "references": [
+        "Foundation",
+        "UniTask",
+        "LitMotion"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_LITMOTION"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.annulusgames.lit-motion",
+            "expression": "",
+            "define": "FOUNDATION_LITMOTION"
+        }
+    ],
+    "noEngineReferences": false
+}

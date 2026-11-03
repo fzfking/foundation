@@ -1,0 +1,20 @@
+{
+    "name": "Foundation.UI.UGui.Editor",
+    "rootNamespace": "Foundation.UI.UGui",
+    "references": [
+        "Foundation.UI.UGui",
+        "UnityEditor.UI",
+        "UniTask"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

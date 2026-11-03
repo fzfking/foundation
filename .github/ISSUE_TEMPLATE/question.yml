@@ -1,0 +1,21 @@
+name: Question
+description: Ask how to use Foundation
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please search the [documentation](https://fzfking.github.io/foundation/) and existing issues before asking.
+  - type: textarea
+    id: question
+    attributes:
+      label: What are you trying to do?
+      description: Describe the goal and what you have tried so far. Short code samples help.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: Foundation, Unity and the adapters you use.
+      placeholder: Foundation 0.8.0, Unity 6000.5.11f1, VContainer 1.19.0

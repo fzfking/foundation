@@ -1,0 +1,27 @@
+{
+    "name": "Foundation.UI.ULayout.Tests",
+    "rootNamespace": "Foundation.UI.ULayout",
+    "references": [
+        "Foundation.UI.ULayout",
+        "uLayout",
+        "UnityEngine.UI"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "FOUNDATION_ULAYOUT",
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.pokeblokdude.ulayout",
+            "expression": "1.7.1",
+            "define": "FOUNDATION_ULAYOUT"
+        }
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

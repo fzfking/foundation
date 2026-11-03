@@ -1,0 +1,27 @@
+{
+    "name": "Foundation.GameFramework.Analytics.AppMetrica",
+    "rootNamespace": "Foundation.GameFramework.Analytics.AppMetrica",
+    "references": [
+        "Foundation",
+        "AppMetrica",
+        "UniTask"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_GAMEFRAMEWORK",
+        "FOUNDATION_APPMETRICA"
+    ],
+    "versionDefines": [
+        {
+            "name": "io.appmetrica.analytics",
+            "expression": "",
+            "define": "FOUNDATION_APPMETRICA"
+        }
+    ],
+    "noEngineReferences": false
+}

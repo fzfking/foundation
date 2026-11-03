@@ -1,0 +1,11 @@
+{
+    "name": "Foundation.Badges",
+    "rootNamespace": "Foundation.Badges",
+    "references": [
+        "Foundation",
+        "Foundation.TypedIds"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}

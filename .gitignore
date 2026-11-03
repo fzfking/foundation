@@ -1,0 +1,50 @@
+# Unity / editor noise that must not end up in the package
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]in/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+/*.csproj
+/*.sln
+*.suo
+*.user
+*.pidb
+*.userprefs
+.vs/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local secrets and signing material must never be committed
+*.keystore
+*.jks
+*.p12
+*.pfx
+*.pem
+*.key
+.env
+.env.*
+secrets.*
+
+# Documentation site build output
+Documentation~/website/node_modules/
+Documentation~/website/build/
+Documentation~/website/.docusaurus/
+
+# Local AI tooling and indexes
+/.opencode/
+/.opencode.meta
+/.serena/
+/.serena.meta
+/codebase-index.json
+/codebase-index.json.meta
+
+# Local audit reports, not package documentation
+/AUDIT_REPORT.md
+/AUDIT_REPORT.md.meta
+/CODE_REVIEW_NOTES.md
+/CODE_REVIEW_NOTES.md.meta
+/DOCUMENTATION_REVIEW_REPORT.md
+/DOCUMENTATION_REVIEW_REPORT.md.meta

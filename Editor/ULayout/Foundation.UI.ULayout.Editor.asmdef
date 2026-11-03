@@ -1,0 +1,22 @@
+{
+    "name": "Foundation.UI.ULayout.Editor",
+    "references": [
+        "Foundation.UI.ULayout",
+        "uLayout",
+        "UnityEngine.UI"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_ULAYOUT"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.pokeblokdude.ulayout",
+            "expression": "1.7.1",
+            "define": "FOUNDATION_ULAYOUT"
+        }
+    ]
+}

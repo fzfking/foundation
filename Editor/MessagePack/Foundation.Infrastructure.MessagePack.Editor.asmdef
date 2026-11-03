@@ -1,0 +1,22 @@
+{
+    "name": "Foundation.Infrastructure.MessagePack.Editor",
+    "rootNamespace": "Foundation.Infrastructure.MessagePack.Editor",
+    "references": [
+        "Foundation",
+        "Foundation.Content.Editor",
+        "Foundation.Infrastructure.MessagePack"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "FOUNDATION_MESSAGEPACK"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
