@@ -248,7 +248,7 @@ public sealed class SmartFormatLocalizationInstaller : IFeatureInstaller
 ## Создание: CSV-конвейер {#authoring-the-csv-pipeline}
 
 ```text
-Google Sheets / Excel → CSV в UTF-8 → проверка → генерация LocalizationKeys → файлы локалей → Addressables → IAssetProvider
+Google Sheets / Excel → CSV в UTF-8 → проверка → двоичные файлы локалей и исходники C#
 ```
 
 В CSV используются столбцы `Key,Context,<locale>,<locale>,...`. `Key` и `Context` содержат метаданные; каждый
@@ -259,11 +259,39 @@ Google Sheets / Excel → CSV в UTF-8 → проверка → генераци
 | Тип | Роль |
 | --- | --- |
 | `LocalizationCsvReader` / `LocalizationCsvSource` | Читает `localization.csv` в `LocalizationDocument`. |
+| `LocalizationCsvSourceProvider` | Добавляет указанный CSV в сборку. Если файла нет, поиск источников останавливается с ошибкой. |
 | `LocalizationCsvValidator` | Проверяет отсутствующие и дублирующиеся ключи перед экспортом. |
 | `LocalizationPlaceholders` | Проверяет, что плейсхолдеры `{name}` одного ключа согласованы между локалями. |
 | `LocalizationCsvExporter` | Создаёт по одной `LocalizationTableData` на столбец локали. |
 | `LocalizationKeysGenerator` | Записывает исходники `LocalizationKeys` и `LocalizationLocales` из столбца ключей. |
+| `LocalizationCodeGenerator` | Записывает скрипты в одной транзакции с двоичными таблицами. Импортирует их в Unity после фиксации файлов. |
 | `LocalizationBuildSettings` | Ваша выходная папка, пространство имён и путь к CSV. |
+
+В установщике сборки конфигов зарегистрируйте поставщик источника и постпроцессор вместе с экспортёром и
+валидатором. Путь к CSV, папку для исходников и пространство имён C# задаёт проект.
+
+```csharp
+using Foundation.Content.Editor.Localization;
+using Foundation.Localization;
+
+var settings = new LocalizationBuildSettings
+{
+    CsvPath = "Assets/Content/Localization/localization.csv",
+    KeysOutputDirectory = "Assets/Scripts/Localization/Generated",
+    KeysNamespace = "MyGame.Localization",
+    FallbackLocale = "en"
+};
+registry.RegisterSourceProvider(new LocalizationCsvSourceProvider(settings));
+registry.RegisterExporter(new LocalizationCsvExporter());
+registry.RegisterValidator(new LocalizationCsvValidator(new LocaleId(settings.FallbackLocale)));
+registry.RegisterPostProcessor(new LocalizationCodeGenerator(settings));
+```
+
+`Validate` проверяет настройки генератора и пути выхода без записи файлов. Пространство имён состоит из
+допустимых идентификаторов C#, разделённых точками. Если два ключа дают одно имя константы, в отчёте
+появятся оба исходных ключа.
+
+Ошибка записи откатывает и таблицы, и скрипты. При ошибке импорта записанные файлы остаются на диске.
 
 Не зашивайте поддерживаемые языки в код импортёра и не зашивайте видимые игроку строки в C#.
 

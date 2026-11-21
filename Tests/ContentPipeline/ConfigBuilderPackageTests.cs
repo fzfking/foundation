@@ -79,7 +79,7 @@ namespace Foundation.Content.Editor.PackageTests
         }
 
         [Test]
-        public void Build_WhenPostProcessorFails_RestoresAllOutputFiles()
+        public void Build_WhenPostProcessorFails_KeepsAllCommittedOutputFiles()
         {
             Directory.CreateDirectory(_outputDir);
             var firstPath = Path.Combine(_outputDir, "first.bytes");
@@ -95,8 +95,8 @@ namespace Foundation.Content.Editor.PackageTests
             Assert.Throws<InvalidOperationException>(() =>
                 builder.Build(new IConfigAuthoringSource[] { new FakeSource() }));
 
-            Assert.That(File.ReadAllText(firstPath), Is.EqualTo("original-first"));
-            Assert.That(File.ReadAllText(secondPath), Is.EqualTo("original-second"));
+            Assert.That(File.ReadAllText(firstPath), Is.EqualTo("custom:new-first"));
+            Assert.That(File.ReadAllText(secondPath), Is.EqualTo("custom:new-second"));
             Assert.That(Directory.GetDirectories(_outputDir, ".foundation-config-build-*"), Is.Empty);
         }
 
@@ -247,7 +247,7 @@ namespace Foundation.Content.Editor.PackageTests
         }
 
         [Test]
-        public void Validate_DoesNotSerializeWriteOrRunPostProcessors()
+        public void Validate_DoesNotSerializeWriteOrRunPostBuildHooks()
         {
             var postProcessor = new CountingPostProcessor();
             var builder = new ConfigBuilder(

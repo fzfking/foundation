@@ -250,7 +250,7 @@ adapter nothing changes: the formatter stays your own registration.
 ## Authoring: the CSV pipeline
 
 ```text
-Google Sheets / Excel → UTF-8 CSV → validation → generated LocalizationKeys → per-locale binaries → Addressables → IAssetProvider
+Google Sheets / Excel → UTF-8 CSV → validation → per-locale binaries + generated C#
 ```
 
 The CSV format is `Key,Context,<locale>,<locale>,...`. `Key` and `Context` are metadata; **every other column is a
@@ -261,11 +261,38 @@ through the [serializer of the content build](config#the-binary-format)):
 | Type | Role |
 | --- | --- |
 | `LocalizationCsvReader` / `LocalizationCsvSource` | Reads `localization.csv` into a `LocalizationDocument`. |
+| `LocalizationCsvSourceProvider` | Adds the configured CSV to the build. A missing file stops source discovery. |
 | `LocalizationCsvValidator` | Checks for missing and duplicate keys before export. |
 | `LocalizationPlaceholders` | Validates that `{name}` placeholders agree across locales for one key. |
 | `LocalizationCsvExporter` | Produces one `LocalizationTableData` per locale column. |
 | `LocalizationKeysGenerator` | Writes `LocalizationKeys` and `LocalizationLocales` source from the key column. |
+| `LocalizationCodeGenerator` | Writes the scripts in the same transaction as the binary tables. Imports them into Unity after the files are committed. |
 | `LocalizationBuildSettings` | Your output directory, namespace and CSV path. |
+
+In the project's config build installer, register the provider and post-processor alongside the exporter and
+validator. The project chooses the CSV path, the generated script directory and the C# namespace.
+`Validate` checks the generator settings and output paths without writing files. The namespace must contain valid
+C# identifiers separated by dots. Keys that would generate the same member name are reported together so the source
+keys can be corrected before generation.
+
+A write failure rolls back both sets of files. An import error is reported with the written files still in place.
+
+```csharp
+using Foundation.Content.Editor.Localization;
+using Foundation.Localization;
+
+var settings = new LocalizationBuildSettings
+{
+    CsvPath = "Assets/Content/Localization/localization.csv",
+    KeysOutputDirectory = "Assets/Scripts/Localization/Generated",
+    KeysNamespace = "MyGame.Localization",
+    FallbackLocale = "en"
+};
+registry.RegisterSourceProvider(new LocalizationCsvSourceProvider(settings));
+registry.RegisterExporter(new LocalizationCsvExporter());
+registry.RegisterValidator(new LocalizationCsvValidator(new LocaleId(settings.FallbackLocale)));
+registry.RegisterPostProcessor(new LocalizationCodeGenerator(settings));
+```
 
 Do not hardcode supported languages in importer code, and do not hardcode player-facing strings in C#.
 

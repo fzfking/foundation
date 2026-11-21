@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Microsoft.CSharp;
 using Foundation.Localization;
 
 namespace Foundation.Content.Editor.Localization
@@ -13,28 +14,35 @@ namespace Foundation.Content.Editor.Localization
         public const string KeysFileName = "LocalizationKeys.cs";
         public const string LocalesFileName = "LocalizationLocales.cs";
 
+        private const string KeysTypeName = "LocalizationKeys";
+        private const string KeysTypeMemberAlias = "LocalizationKeys_2";
+
         public static void Write(LocalizationDocument document, string outputDirectory, string namespaceName)
+        {
+            foreach (var (path, contents) in CollectOutputs(document, outputDirectory, namespaceName))
+            {
+                Directory.CreateDirectory(outputDirectory);
+                File.WriteAllBytes(path, contents);
+            }
+        }
+
+        internal static IEnumerable<(string Path, byte[] Contents)> CollectOutputs(
+            LocalizationDocument document, string outputDirectory, string namespaceName)
         {
             if (document == null)
                 throw new ArgumentNullException(nameof(document));
             if (string.IsNullOrWhiteSpace(outputDirectory))
                 throw new ArgumentException("Output directory must not be empty.", nameof(outputDirectory));
-            if (string.IsNullOrWhiteSpace(namespaceName))
-                throw new ArgumentException("Namespace must not be empty.", nameof(namespaceName));
-
-            Directory.CreateDirectory(outputDirectory);
-            File.WriteAllText(
-                Path.Combine(outputDirectory, KeysFileName),
-                GenerateKeysSource(document.Rows.Select(row => row.Key), namespaceName, document.SourcePath),
-                new UTF8Encoding(false));
-            File.WriteAllText(
-                Path.Combine(outputDirectory, LocalesFileName),
-                GenerateLocalesSource(document.Locales, namespaceName, document.SourcePath),
-                new UTF8Encoding(false));
+            yield return (Path.Combine(outputDirectory, KeysFileName),
+                Encoding.UTF8.GetBytes(GenerateKeysSource(document.Rows.Select(row => row.Key), namespaceName, document.SourcePath)));
+            yield return (Path.Combine(outputDirectory, LocalesFileName),
+                Encoding.UTF8.GetBytes(GenerateLocalesSource(document.Locales, namespaceName, document.SourcePath)));
         }
 
         public static string GenerateKeysSource(IEnumerable<string> keys, string namespaceName, string sourceDescription)
         {
+            ValidateNamespace(namespaceName);
+
             var ordered = (keys ?? Array.Empty<string>())
                 .Where(key => !string.IsNullOrWhiteSpace(key))
                 .Select(key => key.Trim())
@@ -46,13 +54,20 @@ namespace Foundation.Content.Editor.Localization
             builder.AppendLine($"namespace {namespaceName}");
             builder.AppendLine("{");
             builder.AppendLine($"    /// <summary>Generated from {sourceDescription}. Do not edit.</summary>");
-            builder.AppendLine("    public static class LocalizationKeys");
+            builder.AppendLine($"    public static class {KeysTypeName}");
             builder.AppendLine("    {");
-            // A member cannot share the name of its class, so a key that maps to it gets the usual suffix.
-            var usedIdentifiers = new HashSet<string>(StringComparer.Ordinal) { "LocalizationKeys" };
+            var keysByIdentifier = new Dictionary<string, string>(StringComparer.Ordinal);
             foreach (var key in ordered)
             {
-                var identifier = UniqueIdentifier(ToIdentifier(key), usedIdentifiers);
+                var identifier = ToIdentifier(key);
+                // Keep the published name for a key that matches the enclosing class.
+                if (identifier == KeysTypeName)
+                    identifier = KeysTypeMemberAlias;
+
+                if (!keysByIdentifier.TryAdd(identifier, key))
+                    throw new ArgumentException(
+                        $"Localization keys '{keysByIdentifier[identifier]}' and '{key}' both generate '{identifier}'.",
+                        nameof(keys));
                 builder.AppendLine($"        public const string {identifier} = \"{Escape(key)}\";");
             }
 
@@ -63,6 +78,8 @@ namespace Foundation.Content.Editor.Localization
 
         public static string GenerateLocalesSource(IEnumerable<LocaleId> locales, string namespaceName, string sourceDescription)
         {
+            ValidateNamespace(namespaceName);
+
             var ordered = (locales ?? Array.Empty<LocaleId>())
                 .Where(locale => !locale.IsEmpty)
                 .ToArray();
@@ -120,16 +137,18 @@ namespace Foundation.Content.Editor.Localization
             return identifier.Length > 0 && char.IsDigit(identifier[0]) ? "_" + identifier : identifier;
         }
 
-        private static string UniqueIdentifier(string identifier, HashSet<string> used)
+        private static void ValidateNamespace(string namespaceName)
         {
-            if (used.Add(identifier))
-                return identifier;
+            if (string.IsNullOrWhiteSpace(namespaceName))
+                throw new ArgumentException("Namespace must not be empty.", nameof(namespaceName));
 
-            for (var suffix = 2; ; suffix++)
+            using var provider = new CSharpCodeProvider();
+            foreach (var segment in namespaceName.Split('.'))
             {
-                var candidate = identifier + "_" + suffix.ToString(CultureInfo.InvariantCulture);
-                if (used.Add(candidate))
-                    return candidate;
+                if (!provider.IsValidIdentifier(segment.Trim()))
+                    throw new ArgumentException(
+                        $"Namespace '{namespaceName}' must contain valid C# identifiers separated by dots.",
+                        nameof(namespaceName));
             }
         }
 

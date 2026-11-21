@@ -155,7 +155,7 @@ namespace Foundation.Infrastructure.YooAsset
                         progress,
                         beforeRemoteUpdate == null ? null : CheckGateAsync,
                         cancellationToken,
-                        _remoteService?.ApplyMirror);
+                        _remoteService == null ? null : _remoteService.ApplyMirror);
                     cancellationToken.ThrowIfCancellationRequested();
                     _context.Publish(package);
                     _package = package;

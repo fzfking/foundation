@@ -148,6 +148,35 @@ namespace Foundation.Content.Editor
             if (errors.Count > 0)
                 return ConfigBuildReport.CreateFailure(errors);
 
+            var additionalOutputs = new List<(string reportPath, string fullPath, byte[] contents)>();
+            foreach (var postProcessor in _postProcessors)
+            {
+                var name = postProcessor.GetType().Name;
+                try
+                {
+                    foreach (var (path, contents) in postProcessor.CollectOutputs(sources))
+                    {
+                        var fullPath = Path.GetFullPath(path);
+                        if (outputOwners.TryAdd(fullPath, name))
+                        {
+                            additionalOutputs.Add((path, fullPath, contents));
+                        }
+                        else
+                        {
+                            errors.Add(new ConfigBuildError(name, path, ConfigBuildErrorKind.DuplicateOutput,
+                                $"Build output '{path}' is also produced by '{outputOwners[fullPath]}'."));
+                        }
+                    }
+                }
+                catch (Exception exception) when (exception is ArgumentException or NotSupportedException or PathTooLongException)
+                {
+                    errors.Add(new ConfigBuildError(name, null, ConfigBuildErrorKind.Invalid, exception.Message));
+                }
+            }
+
+            if (errors.Count > 0)
+                return ConfigBuildReport.CreateFailure(errors);
+
             if (!writeFiles)
                 return ConfigBuildReport.CreateSuccess(Array.Empty<string>());
 
@@ -169,27 +198,24 @@ namespace Foundation.Content.Editor
                 }
             }
 
-            if (outputs.Count == 0)
-            {
-                foreach (var postProcessor in _postProcessors)
-                    postProcessor.OnBuildSucceeded(sources);
+            outputs.AddRange(additionalOutputs);
 
-                return ConfigBuildReport.CreateSuccess(Array.Empty<string>());
-            }
-
-            var outputDirectory = Path.GetFullPath(_settings.OutputDirectory);
-            Directory.CreateDirectory(outputDirectory);
-            var stagingDirectory = Path.Combine(
-                outputDirectory,
-                ".foundation-config-build-" + Guid.NewGuid().ToString("N"));
+            var stagingDirectories = new Dictionary<string, string>();
             var stagedPaths = new string[outputs.Count];
             var committedFiles = new List<(string outputPath, string backupPath, bool replacedExisting)>();
             var preserveStagingDirectory = false;
             try
             {
-                Directory.CreateDirectory(stagingDirectory);
                 for (var i = 0; i < outputs.Count; i++)
                 {
+                    var directory = Path.GetDirectoryName(outputs[i].fullPath);
+                    if (!stagingDirectories.TryGetValue(directory, out var stagingDirectory))
+                    {
+                        stagingDirectory = Path.Combine(directory, ".foundation-config-build-" + Guid.NewGuid().ToString("N"));
+                        Directory.CreateDirectory(stagingDirectory);
+                        stagingDirectories.Add(directory, stagingDirectory);
+                    }
+
                     stagedPaths[i] = Path.Combine(stagingDirectory, "new-" + i);
                     File.WriteAllBytes(stagedPaths[i], outputs[i].contents);
                 }
@@ -199,7 +225,7 @@ namespace Foundation.Content.Editor
                     var outputPath = outputs[i].fullPath;
                     if (File.Exists(outputPath))
                     {
-                        var backupPath = Path.Combine(stagingDirectory, "backup-" + i);
+                        var backupPath = Path.Combine(Path.GetDirectoryName(stagedPaths[i]), "backup-" + i);
                         File.Replace(stagedPaths[i], outputPath, backupPath);
                         committedFiles.Add((outputPath, backupPath, true));
                     }
@@ -209,11 +235,6 @@ namespace Foundation.Content.Editor
                         committedFiles.Add((outputPath, null, false));
                     }
                 }
-
-                foreach (var postProcessor in _postProcessors)
-                    postProcessor.OnBuildSucceeded(sources);
-
-                return ConfigBuildReport.CreateSuccess(outputs.Select(output => output.reportPath).ToArray());
             }
             catch (Exception buildException)
             {
@@ -225,7 +246,7 @@ namespace Foundation.Content.Editor
                     {
                         if (committedFile.replacedExisting)
                         {
-                            var rollbackBackupPath = Path.Combine(stagingDirectory, "rollback-" + i);
+                            var rollbackBackupPath = Path.Combine(Path.GetDirectoryName(committedFile.backupPath), "rollback-" + i);
                             File.Replace(committedFile.backupPath, committedFile.outputPath, rollbackBackupPath);
                         }
                         else if (File.Exists(committedFile.outputPath))
@@ -252,9 +273,17 @@ namespace Foundation.Content.Editor
             }
             finally
             {
-                if (!preserveStagingDirectory && Directory.Exists(stagingDirectory))
-                    Directory.Delete(stagingDirectory, true);
+                if (!preserveStagingDirectory)
+                {
+                    foreach (var stagingDirectory in stagingDirectories.Values)
+                        Directory.Delete(stagingDirectory, true);
+                }
             }
+
+            foreach (var postProcessor in _postProcessors)
+                postProcessor.OnBuildSucceeded(sources);
+
+            return ConfigBuildReport.CreateSuccess(outputs.Select(output => output.reportPath).ToArray());
         }
 
         private static void ValidateEntryIds(
