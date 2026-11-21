@@ -1,10 +1,12 @@
 using System.Collections.Generic;
+using System.Threading;
 using Foundation.UI.Imgui;
 using Foundation.UI.Toolkit;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System;
+using Object = UnityEngine.Object;
 
 namespace Foundation.UI.Backends.Tests
 {
@@ -12,9 +14,21 @@ namespace Foundation.UI.Backends.Tests
     {
         private sealed class ToolkitScreen : UiToolkitView
         {
+            public Action<VisualElement> BindAction;
             public bool Bound { get; private set; }
+            public int HideCount { get; private set; }
+            public int DisposeCount { get; private set; }
+            public CancellationToken Token => VisibilityToken;
 
-            protected override void OnBound(VisualElement root) => Bound = true;
+            protected override void OnBound(VisualElement root)
+            {
+                Bound = true;
+                BindAction?.Invoke(root);
+            }
+
+            protected override void OnHide() => HideCount++;
+
+            protected override void OnDispose() => DisposeCount++;
         }
 
         private sealed class ImguiScreen : ImguiView
@@ -52,10 +66,62 @@ namespace Foundation.UI.Backends.Tests
             Assert.That(screens.childCount, Is.EqualTo(0));
             Assert.That(popups.childCount, Is.EqualTo(1));
             Assert.That(popups[0].style.display.value, Is.EqualTo(DisplayStyle.Flex), "the router showed it");
+            var token = view.Token;
 
             router.CloseAsync(view).GetAwaiter().GetResult();
 
             Assert.That(popups.childCount, Is.EqualTo(0));
+            Assert.That(token.IsCancellationRequested, Is.True);
+            Assert.That(view.HideCount, Is.EqualTo(1));
+            Assert.That(view.DisposeCount, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ToolkitView_ReopeningStartsAFreshVisibilityLifetime()
+        {
+            using var view = new ToolkitScreen();
+            using var open = new CancellationTokenSource();
+            view.Bind(new VisualElement());
+            view.ShowAsync(open.Token).GetAwaiter().GetResult();
+            var first = view.Token;
+
+            open.Cancel();
+            Assert.That(first.IsCancellationRequested, Is.False);
+            view.HideAsync().GetAwaiter().GetResult();
+            view.HideAsync().GetAwaiter().GetResult();
+            Assert.That(view.HideCount, Is.EqualTo(1));
+            Assert.That(first.IsCancellationRequested, Is.True);
+
+            view.ShowAsync().GetAwaiter().GetResult();
+            var second = view.Token;
+            Assert.That(second.IsCancellationRequested, Is.False);
+            view.Dispose();
+
+            Assert.That(second.IsCancellationRequested, Is.True);
+            Assert.That(view.HideCount, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void ToolkitViewFactory_FailedBindReleasesViewAndTree()
+        {
+            var parent = new VisualElement();
+            var view = new ToolkitScreen
+            {
+                BindAction = element =>
+                {
+                    parent.Add(element);
+                    throw new InvalidOperationException("Bind failed.");
+                }
+            };
+            var definition = new UiDefinition("broken",
+                new UiToolkitTemplate(() => new VisualElement(), () => view),
+                UILayer.Popup, UICachePolicy.DestroyOnClose, false, true);
+            var factory = new UiToolkitViewFactory(new UiToolkitRoot(parent, parent));
+
+            Assert.Throws<InvalidOperationException>(() => factory.CreateAsync(definition, default));
+            Assert.That(parent.childCount, Is.Zero);
+            Assert.That(view.DisposeCount, Is.EqualTo(1));
+            Assert.That(view.HideCount, Is.Zero);
         }
 
         [Test]

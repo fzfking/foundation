@@ -348,10 +348,19 @@ public sealed class ShopButtonView : MonoBehaviour
 A target is available while it is active, and `wait_click` / `highlight` find it by id, so an object that appears later
 (a popup, a list row) can be pointed at as soon as it exists.
 
+With `FOUNDATION_UITOOLKIT` defined, wrap a `VisualElement` in
+`new UiToolkitTutorialTarget(registry, "shop.button", element)`. Pass the same `TutorialTargetRegistry` the
+runner uses. The adapter registers on panel attach and unregisters on detach. Dispose it when the view releases
+the element. Use `SetId` when a recycled element represents a different item.
+
+The adapter reports UI Toolkit `ClickEvent` clicks. For custom controls, pass `observeClickEvents: false`
+and call `NotifyClicked` from the control's activation handler. Hidden or disabled elements are unavailable. A UI Toolkit presenter can
+get laid-out panel coordinates from `TryGetWorldBounds`. A uGUI presenter can use `ITutorialTarget.Rect`
+for a `TutorialTarget` component.
+
 ### Presentation
 
-The project provides what the player sees by implementing three contracts, usually as one presenter over a tutorial
-panel. Nothing about fonts, animation or prefabs is in Foundation.
+The runner uses three presentation contracts. A project can implement them in one presenter over a tutorial panel.
 
 | Contract | Used by | Purpose |
 | --- | --- | --- |
@@ -397,6 +406,19 @@ public sealed class TutorialPanel : ITutorialOverlay, ITutorialDialoguePresenter
     public void ClearFocus() => Focused = null;
 }
 ```
+
+#### Spotlight in UI Toolkit
+
+Add a `UiToolkitTutorialSpotlight` above the interactive UI in the same panel and supply it as the
+`ITutorialFocusPresenter`. The element fills its parent. Its four shades take pointer hits outside the
+opening, and the opening follows the target as the layout moves. The opening is clipped to the overlay.
+`TutorialFocusRequest.Padding` expands it in the spotlight's local units. With no laid-out target, the shades
+cover the whole overlay.
+
+Style `.tutorial-spotlight__shade` with the project's USS. Place the dialogue above the spotlight and use
+the project's `ITutorialOverlay` to show and hide the tutorial layer. The game handles `ShowHand` and
+any other rules for highlighting multiple elements. Pass a bounds expansion function to `Focus` to include other
+elements in panel coordinates. Use `HoleChanged` to reposition the dialogue or decoration.
 
 ### Putting Flow together
 

@@ -302,8 +302,37 @@ var source = new UiToolkitTemplate(tree, () => new ToolkitSettingsView());   // 
 var definition = new UiDefinition("settings", source, UILayer.Popup, UICachePolicy.DestroyOnClose, blockInput: true, allowBack: true);
 ```
 
+For constructor injection, pass a factory such as `() => resolver.Resolve<ToolkitSettingsView>()` and resolve a
+fresh view on each call. The backend owns that instance and its tree.
+
+Override `OnBound` to wire the tree and `OnShowAsync` for work the open operation must await. Use
+`VisibilityToken` for work that should continue after opening. It is canceled before `OnHide`, and a cached view
+gets a fresh token when shown again. `OnHide` runs once per show. Use `OnDispose` to release bindings created in
+`OnBound`. The factory disposes the view and removes its tree on `DestroyOnClose` or if creation fails partway through.
+
 To use another UI library, implement `IUIViewFactory` and `IUIView` for it and register the factory. The router, back
 stack, caching and arguments keep working unchanged. Separate routers (and scopes) can use different backends.
+
+### UI Toolkit safe area
+
+In a screen-overlay panel, use `SafeAreaElement` as a full-size wrapper around content that needs to avoid
+screen cutouts. It can be constructed in code or declared in UXML. It converts the screen safe area to local
+coordinates, including the panel scale and any design scale, then pads only the edges that overlap the cutout.
+
+For a fixed-size layout, add a `UiToolkitDesignViewport` to the panel and put the UI under its `Content` element.
+Choose the reference resolution in the project. For example, a portrait UI can use:
+
+```csharp
+var viewport = new UiToolkitDesignViewport(new Vector2(1080, 1920));
+var safeContent = new SafeAreaElement();
+panelRoot.Add(viewport);
+viewport.Content.Add(safeContent);
+safeContent.Add(screens);
+safeContent.Add(popups);
+```
+
+The viewport centers and uniformly scales the design. When a cutout falls entirely in the free space around
+the design, it adds zero padding to the content.
 
 ## Tooltips
 

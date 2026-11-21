@@ -46,13 +46,62 @@ namespace Foundation.UI.Toolkit
                 throw new InvalidOperationException(
                     $"UI definition '{definition.ViewId}' needs a {nameof(UiToolkitTemplate)} as its source.");
 
+            cancellationToken.ThrowIfCancellationRequested();
             var element = template.BuildTree();
-            element.style.display = DisplayStyle.None;
-            var view = template.CreateView();
-            view.Bind(element);
-            _root.Resolve(definition.Layer).Add(element);
+            IUiToolkitView view = null;
+            try
+            {
+                element.style.display = DisplayStyle.None;
+                cancellationToken.ThrowIfCancellationRequested();
+                view = template.CreateView();
+                view.Bind(element);
+                cancellationToken.ThrowIfCancellationRequested();
+                _root.Resolve(definition.Layer).Add(element);
+                cancellationToken.ThrowIfCancellationRequested();
 
-            return UniTask.FromResult<IUIViewInstance>(new UIViewInstance(view, () => element.RemoveFromHierarchy()));
+                return UniTask.FromResult<IUIViewInstance>(new UIViewInstance(view, () => Release(view, element)));
+            }
+            catch (Exception creationFailure)
+            {
+                try
+                {
+                    Release(view, element);
+                }
+                catch (Exception cleanupFailure)
+                {
+                    throw new AggregateException(creationFailure, cleanupFailure);
+                }
+
+                throw;
+            }
+        }
+
+        private static void Release(IUiToolkitView view, VisualElement element)
+        {
+            try
+            {
+                (view as IDisposable)?.Dispose();
+            }
+            finally
+            {
+                if (TryReadParent(element, out var parent) && parent != null)
+                    element.RemoveFromHierarchy();
+            }
+        }
+
+        internal static bool TryReadParent(VisualElement element, out VisualElement parent)
+        {
+            try
+            {
+                parent = element.parent;
+                return true;
+            }
+            catch (Exception exception) when (exception is NullReferenceException or InvalidOperationException)
+            {
+                // PanelRenderer can release the previous tree before notifying callers about the reload.
+                parent = null;
+                return false;
+            }
         }
     }
 }
