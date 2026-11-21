@@ -101,6 +101,8 @@ The [quick start](https://fzfking.github.io/foundation/getting-started/quick-sta
 
 ## Games built with Foundation
 
+- [FoolCardGame](https://github.com/fzfking/FoolCardGame) is a playable throw-in Fool demo that uses Foundation for
+  startup, UI Toolkit navigation, localization, and tutorials.
 - [Vampires World Idle](https://play.google.com/store/apps/details?id=com.freedominteractive.vampireWorldIdle) by Freedom Interactive Studios: a vampire idle tycoon for Android.
 
 Made a game with Foundation? Open an issue or a pull request to add it here.
